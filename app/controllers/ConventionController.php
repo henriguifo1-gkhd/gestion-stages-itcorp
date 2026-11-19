@@ -120,7 +120,7 @@ class ConventionController extends Controller
 
         $id = $model->insert($data);
         Historique::log('convention', $id, 'creation', 'Convention ' . $data['reference'] . ' créée (statut en_attente).');
-        $this->flash('success', 'Convention créée. Elle doit être validée avant de démarrer un stage (Règle 3).');
+        $this->flash('success', 'Convention créée.');
         Response::redirect('index.php?action=stagiaires/voir&id=' . $data['stagiaire_id']);
     }
 
@@ -139,7 +139,7 @@ class ConventionController extends Controller
         } else {
             $model->update($id, ['statut' => 'validee']);
             Historique::log('convention', $id, 'validation', 'Convention validée.');
-            $this->flash('success', 'Convention validée. Le stage peut désormais être créé.');
+            $this->flash('success', 'Convention validée.');
         }
         Response::redirect('index.php?action=stagiaires/voir&id=' . $c['stagiaire_id']);
     }

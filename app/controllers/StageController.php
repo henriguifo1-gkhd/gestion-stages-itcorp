@@ -77,11 +77,11 @@ class StageController extends Controller
             Response::redirect('index.php?action=stagiaires');
         }
         if (!$conventionModel->estValide($convention)) {
-            $this->flash('error', 'Impossible de créer le stage : la convention n\'est pas validée (Règle 3 du cahier des charges).');
+            $this->flash('error', 'Impossible de créer le stage : la convention n\'est pas validée.');
             Response::redirect('index.php?action=stagiaires/voir&id=' . $convention['stagiaire_id']);
         }
         if ((new Stage())->aUnStageActif((int)$convention['stagiaire_id'])) {
-            $this->flash('error', 'Impossible de créer le stage : ce stagiaire a déjà un stage en cours ou à venir. Un nouveau stage ne peut démarrer qu\'après la fin (ou l\'interruption) du précédent.');
+            $this->flash('error', 'Impossible de créer le stage : ce stagiaire a déjà un stage en cours ou à venir.');
             Response::redirect('index.php?action=stagiaires/voir&id=' . $convention['stagiaire_id']);
         }
 
@@ -111,7 +111,7 @@ class StageController extends Controller
         ]);
         Historique::log('stage', $stageId, 'creation', 'Stage créé (en attente d\'affectation d\'un encadrant).');
 
-        $this->flash('success', 'Stage créé. Affectez un encadrant avant de démarrer le stage (Règle 4).');
+        $this->flash('success', 'Stage créé.');
         Response::redirect('index.php?action=stages/voir&id=' . $stageId);
     }
 
@@ -210,7 +210,7 @@ class StageController extends Controller
         // L'encadrant est notifié qu'un stagiaire lui est confié (pas de doublon s'il l'encadrait déjà).
         if (!$dejaEncadrant) {
             (new Notification())->notifierAffectation($encadrantId, $stageId,
-                trim($stage['stagiaire_prenom'] . ' ' . $stage['stagiaire_nom']), (string)$stage['etablissement'],
+                trim($stage['stagiaire_nom'] . ' ' . $stage['stagiaire_prenom']), (string)$stage['etablissement'],
                 (string)($stage['stagiaire_sexe'] ?? 'M'));
         }
 
@@ -219,7 +219,7 @@ class StageController extends Controller
         // n'existe plus dans ce schéma.
         Historique::log('stage', $stageId, 'affectation_encadrant', 'Encadrant affecté : ' . $encadrant['prenom'] . ' ' . $encadrant['nom']);
 
-        $this->flash('success', 'Encadrant affecté avec succès' . ($dejaEncadrant ? '' : ' et notifié') . '. L\'historique du suivi précédent est conservé.');
+        $this->flash('success', 'Encadrant affecté avec succès' . ($dejaEncadrant ? '' : ' et notifié') . '.');
         Response::redirect('index.php?action=stages/voir&id=' . $stageId);
     }
 
@@ -240,7 +240,7 @@ class StageController extends Controller
             Response::redirect('index.php?action=stages/voir&id=' . $stageId);
         }
         if (!$stage['encadrant_actuel_id']) {
-            $this->flash('error', 'Impossible de démarrer le stage : aucun encadrant n\'est affecté (cas limite du cahier des charges).');
+            $this->flash('error', 'Impossible de démarrer le stage : aucun encadrant n\'est affecté.');
             Response::redirect('index.php?action=stages/voir&id=' . $stageId);
         }
         $model->update($stageId, ['statut' => 'en_cours']);
@@ -266,7 +266,7 @@ class StageController extends Controller
         }
         $model->update($stageId, ['statut' => 'termine']);
         Historique::log('stage', $stageId, 'cloture', 'Stage clôturé (terminé).');
-        $this->flash('success', 'Stage clôturé. Vous pouvez maintenant générer l\'attestation de fin de stage.');
+        $this->flash('success', 'Stage clôturé.');
         Response::redirect('index.php?action=stages/voir&id=' . $stageId);
     }
 
@@ -289,7 +289,7 @@ class StageController extends Controller
         }
         $model->update($stageId, ['statut' => 'interrompu']);
         Historique::log('stage', $stageId, 'interruption', 'Stage interrompu avant son terme. Motif : ' . $motif);
-        $this->flash('warning', 'Stage marqué "interrompu". Aucune attestation ne pourra être générée pour ce stage.');
+        $this->flash('warning', 'Stage interrompu.');
         Response::redirect('index.php?action=stages/voir&id=' . $stageId);
     }
 }

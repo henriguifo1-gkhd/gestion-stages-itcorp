@@ -56,8 +56,10 @@ set_exception_handler(function (\Throwable $e) {
         $sqlState = (string)($info[0] ?? $e->getCode());
         $codeMysql = (int)($info[1] ?? 0);
         if ($sqlState === '45000' && !empty($info[2])) {
-            // Message rédigé dans 02_triggers.sql : déjà destiné à l'utilisateur.
-            $message = 'Opération refusée : ' . $info[2] . '.';
+            // Message rédigé dans 02_triggers.sql. Une éventuelle référence « Règle N : » (bases
+            // installées avant la reformulation des messages) n'est jamais montrée à l'utilisateur.
+            $texte = preg_replace('/^\s*R[èe]gle\s*\d+\s*:\s*/iu', '', (string)$info[2]);
+            $message = 'Opération refusée : ' . $texte . '.';
         } elseif ($codeMysql === 1062) {
             $message = 'Opération refusée : cette valeur existe déjà (doublon).';
         } elseif (in_array($codeMysql, [1451, 1452], true)) {

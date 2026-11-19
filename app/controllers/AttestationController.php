@@ -54,7 +54,7 @@ class AttestationController extends Controller
 
         $evaluations = (new Evaluation())->toutesParStage($stageId);
         if (empty($evaluations)) {
-            $this->flash('error', 'Génération impossible : aucune évaluation n\'a été saisie pour ce stage (cas limite du cahier des charges).');
+            $this->flash('error', 'Génération impossible : aucune évaluation n\'a été saisie pour ce stage.');
             Response::redirect('index.php?action=stages/voir&id=' . $stageId);
         }
 

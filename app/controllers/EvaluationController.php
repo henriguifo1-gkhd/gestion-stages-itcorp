@@ -107,7 +107,7 @@ class EvaluationController extends Controller
         $model = new Evaluation();
         $existante = $model->existeDeja($stageId, $periodeCode);
         if ($existante) {
-            $this->flash('error', "Une évaluation existe déjà pour cette période. Modifiez-la plutôt que d'en créer une nouvelle (Règle 5).");
+            $this->flash('error', "Évaluation non enregistrée : une évaluation existe déjà pour cette période.");
             Response::redirect('index.php?action=stages/voir&id=' . $stageId);
         }
 

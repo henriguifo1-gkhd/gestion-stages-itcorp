@@ -5,7 +5,7 @@
 <body>
 <div class="error-page"><div class="card error-card">
   <h1>403</h1>
-  <p>Accès refusé : votre rôle ne permet pas d'effectuer cette opération (Règle 7 - droits d'accès par rôle).</p>
+  <p>Accès refusé : vous n'avez pas les droits pour effectuer cette opération.</p>
   <a class="btn" href="index.php?action=dashboard">Retour au tableau de bord</a>
 </div></div>
 </body></html>

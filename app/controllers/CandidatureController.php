@@ -148,7 +148,7 @@ class CandidatureController extends Controller
         // acceptée (contrainte chk_candidature_lien), ce qui est désormais le cas.
         $candModel->update($id, ['stagiaire_id' => $stagiaireId]);
 
-        $this->flash('success', 'Candidature acceptée. La fiche stagiaire a été ' . ($stagiaireExistant ? 'réutilisée' : 'créée automatiquement') . '. Vous pouvez maintenant informer le candidat par mail.');
+        $this->flash('success', 'Candidature acceptée. La fiche stagiaire a été ' . ($stagiaireExistant ? 'réutilisée' : 'créée') . '.');
         Response::redirect('index.php?action=candidatures/mailForm&id=' . $id);
     }
 
@@ -162,7 +162,7 @@ class CandidatureController extends Controller
         if ($c && $c['statut'] === 'en_attente') {
             $model->update($id, ['statut' => 'refusee']);
             Historique::log('candidature', $id, 'refus', 'Candidature refusée');
-            $this->flash('success', 'Candidature refusée. Vous pouvez maintenant informer le candidat par mail.');
+            $this->flash('success', 'Candidature refusée.');
             Response::redirect('index.php?action=candidatures/mailForm&id=' . $id);
         }
         Response::redirect('index.php?action=candidatures');
@@ -263,7 +263,7 @@ class CandidatureController extends Controller
             Historique::log('stagiaire', (int)$c['stagiaire_id'], 'desistement', 'Désistement du stagiaire, historique conservé.');
         }
 
-        $this->flash('success', 'Désistement enregistré. Le dossier est conservé pour traçabilité.');
+        $this->flash('success', 'Désistement enregistré.');
         Response::redirect('index.php?action=candidatures');
     }
 }

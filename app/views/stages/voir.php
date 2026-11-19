@@ -13,7 +13,7 @@
     <tr><th style="width:220px;">Stagiaire</th><td><a href="index.php?action=stagiaires/voir&id=<?= $stage['stagiaire_id'] ?>"><?= htmlspecialchars($stage['stagiaire_nom'] . ' ' . $stage['stagiaire_prenom']) ?></a> (<?= htmlspecialchars($stage['etablissement']) ?>)</td></tr>
     <tr><th>Convention</th><td><?= htmlspecialchars($stage['convention_reference']) ?> <span class="badge badge-<?= $stage['convention_statut'] ?>"><?= htmlspecialchars(libelle_statut((string)$stage['convention_statut'])) ?></span></td></tr>
     <tr><th>Période</th><td><?= htmlspecialchars($stage['date_debut']) ?> → <?= htmlspecialchars($stage['date_fin']) ?></td></tr>
-    <tr><th>Encadrant actuel</th><td><?= $stage['encadrant_nom'] ? htmlspecialchars($stage['encadrant_prenom'] . ' ' . $stage['encadrant_nom']) : '<span class="text-muted">Aucun - le stage ne peut pas démarrer (cas limite)</span>' ?></td></tr>
+    <tr><th>Encadrant actuel</th><td><?= $stage['encadrant_nom'] ? htmlspecialchars($stage['encadrant_prenom'] . ' ' . $stage['encadrant_nom']) : '<span class="text-muted">Aucun</span>' ?></td></tr>
   </table>
 
   <?php if (Auth::is('admin')): ?>
@@ -186,7 +186,6 @@
           <button class="btn btn-sm" type="submit">Enregistrer l'évaluation</button>
         </form>
       </details>
-      <p class="text-muted">Une évaluation existante pour la même période ne peut pas être dupliquée (Règle 5) : modifiez-la au lieu d'en créer une nouvelle.</p>
     <?php endif; ?>
   <?php endif; ?>
 </div>

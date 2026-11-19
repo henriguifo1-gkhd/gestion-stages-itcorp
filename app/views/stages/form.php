@@ -1,9 +1,9 @@
 <h1><?= icone('stage') ?> Créer un stage</h1>
 <?php if (!$convention || $convention['statut'] !== 'validee'): ?>
-  <div class="flash flash-error">Impossible de créer le stage : la convention doit être validée (Règle 3 du cahier des charges).</div>
+  <div class="flash flash-error">Impossible de créer le stage : la convention n'est pas validée.</div>
   <a class="btn" href="index.php?action=stagiaires">Retour</a>
 <?php elseif ($stagiaireADejaUnStageActif): ?>
-  <div class="flash flash-error">Impossible de créer le stage : ce stagiaire a déjà un stage en cours ou à venir. Un nouveau stage ne peut démarrer qu'après la fin (ou l'interruption) du précédent.</div>
+  <div class="flash flash-error">Impossible de créer le stage : ce stagiaire a déjà un stage en cours ou à venir.</div>
   <a class="btn" href="index.php?action=stagiaires/voir&id=<?= $convention['stagiaire_id'] ?>">Retour à la fiche du stagiaire</a>
 <?php else: ?>
 <div class="card" style="max-width:560px;">

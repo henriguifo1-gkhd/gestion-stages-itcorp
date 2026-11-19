@@ -66,7 +66,7 @@ BEGIN
 
   IF v_statut IS NULL OR FIND_IN_SET(v_statut, p_statuts_admis) = 0 THEN
     SIGNAL SQLSTATE '45000'
-      SET MESSAGE_TEXT = 'Règle 3 : le stage doit être rattaché à une convention validée';
+      SET MESSAGE_TEXT = 'le stage doit être rattaché à une convention validée';
   END IF;
 
   IF p_debut < v_debut OR p_fin > v_fin THEN
@@ -101,7 +101,7 @@ BEGIN
   IF NEW.statut IN ('en_attente','rejetee') AND NEW.statut <> OLD.statut
      AND EXISTS (SELECT 1 FROM stage WHERE convention_id = NEW.id) THEN
     SIGNAL SQLSTATE '45000'
-      SET MESSAGE_TEXT = 'Règle 3 : convention déjà liée à un stage, statut non modifiable en attente/rejetée';
+      SET MESSAGE_TEXT = 'cette convention est déjà liée à un stage, son statut ne peut plus être modifié';
   END IF;
 END$$
 
@@ -118,7 +118,7 @@ CREATE TRIGGER trg_affectation_bu BEFORE UPDATE ON affectation FOR EACH ROW
 BEGIN
   IF NEW.encadrant_id <> OLD.encadrant_id OR NEW.stage_id <> OLD.stage_id THEN
     SIGNAL SQLSTATE '45000'
-      SET MESSAGE_TEXT = 'Règle 4 : une affectation ne se modifie pas, on la clôt (date_fin) et on en crée une nouvelle';
+      SET MESSAGE_TEXT = 'une affectation existante ne peut pas être modifiée';
   END IF;
 END$$
 

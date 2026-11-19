@@ -210,7 +210,7 @@ class LivrableController extends Controller
         try {
             (new \App\Models\Notification())->notifierDepotLivrable(
                 (int)$livrable['stage_id'],
-                trim($stage['stagiaire_prenom'] . ' ' . $stage['stagiaire_nom']),
+                trim($stage['stagiaire_nom'] . ' ' . $stage['stagiaire_prenom']),
                 (string)$livrable['titre'],
                 (bool)$updated['hors_delai'],
                 $stage['encadrant_actuel_id'] !== null ? (int)$stage['encadrant_actuel_id'] : null
@@ -345,7 +345,7 @@ class LivrableController extends Controller
         if ($archiver) {
             $model->archiver($id, (int)Auth::id());
             Historique::log('livrable', $id, 'archivage', 'Livrable "' . $livrable['titre'] . '" supprimé (archivé' . ($livrable['date_depot'] ? ', dépôt et fichier conservés' : ', aucun dépôt') . ').');
-            $this->flash('success', 'Livrable supprimé (archivé). Il reste consultable dans le filtre « Archivés » de la liste des livrables.');
+            $this->flash('success', 'Livrable archivé.');
         } else {
             $model->restaurer($id);
             Historique::log('livrable', $id, 'restauration', 'Livrable "' . $livrable['titre'] . '" restauré.');

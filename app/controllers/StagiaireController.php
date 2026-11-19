@@ -90,7 +90,7 @@ class StagiaireController extends Controller
 
         (new Stagiaire())->lierCompte($id, $utilisateurId);
         Historique::log('stagiaire', $id, 'liaison_compte', 'Fiche liée au compte utilisateur ' . $compte['email'] . ', pour l\'accès à l\'espace personnel du stagiaire.');
-        $this->flash('success', 'Compte utilisateur lié avec succès. Le stagiaire peut maintenant consulter son dossier depuis son tableau de bord.');
+        $this->flash('success', 'Compte utilisateur lié avec succès.');
         Response::redirect('index.php?action=stagiaires/voir&id=' . $id);
     }
 
@@ -150,7 +150,7 @@ class StagiaireController extends Controller
         if ($model->possedeHistorique($id)) {
             $model->archiver($id);
             Historique::log('stagiaire', $id, 'archivage', 'Suppression refusée (historique existant) : dossier archivé.');
-            $this->flash('warning', 'Ce stagiaire possède un historique (convention/stage). Il a été archivé plutôt que supprimé, afin de conserver la traçabilité.');
+            $this->flash('warning', 'Stagiaire archivé.');
         } else {
             $stagiaire = $model->find($id);
             if (!$stagiaire) {
@@ -159,7 +159,7 @@ class StagiaireController extends Controller
             $model->supprimerSansHistorique($id);
             Historique::log('stagiaire', $id, 'suppression', 'Fiche de ' . $stagiaire['nom'] . ' ' . $stagiaire['prenom']
                 . ' (' . $stagiaire['email'] . ') supprimée : aucun historique. Candidature(s) d\'origine conservée(s).');
-            $this->flash('success', 'Stagiaire supprimé (aucun historique associé). Sa candidature reste consultable.');
+            $this->flash('success', 'Stagiaire supprimé.');
         }
         Response::redirect('index.php?action=stagiaires');
     }
