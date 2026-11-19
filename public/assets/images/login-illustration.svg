@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-label="Illustration : un encadrant accompagne un stagiaire devant un ordinateur portable">
+  <!-- decor : points flottants -->
+  <circle cx="46" cy="66" r="5" fill="#ffffff" opacity=".14"/>
+  <circle cx="382" cy="52" r="9" fill="#ffffff" opacity=".10"/>
+  <circle cx="34" cy="330" r="7" fill="#ffffff" opacity=".10"/>
+  <circle cx="392" cy="250" r="4" fill="#ffffff" opacity=".16"/>
+  <circle cx="368" cy="360" r="6" fill="#ffffff" opacity=".10"/>
+  <!-- fenetre stylisee -->
+  <rect x="300" y="46" width="86" height="104" rx="8" fill="none" stroke="#ffffff" stroke-opacity=".16" stroke-width="2"/>
+  <line x1="343" y1="46" x2="343" y2="150" stroke="#ffffff" stroke-opacity=".16" stroke-width="2"/>
+  <line x1="300" y1="98" x2="386" y2="98" stroke="#ffffff" stroke-opacity=".16" stroke-width="2"/>
+  <!-- plante -->
+  <polygon points="52,320 84,320 78,352 58,352" fill="#c9e6da" opacity=".85"/>
+  <ellipse cx="68" cy="300" rx="7" ry="22" fill="#8fd0b8" transform="rotate(-18 68 300)"/>
+  <ellipse cx="68" cy="298" rx="7" ry="24" fill="#7fc9b9" transform="rotate(6 68 298)"/>
+  <ellipse cx="68" cy="300" rx="7" ry="20" fill="#a6dcc9" transform="rotate(28 68 300)"/>
+  <!-- sol -->
+  <line x1="40" y1="352" x2="386" y2="352" stroke="#ffffff" stroke-opacity=".14" stroke-width="2"/>
+  <!-- bureau -->
+  <rect x="96" y="298" width="248" height="12" rx="4" fill="#eaf2fb"/>
+  <rect x="108" y="310" width="9" height="42" fill="#cfe0f0"/>
+  <rect x="323" y="310" width="9" height="42" fill="#cfe0f0"/>
+  <!-- ordinateur portable -->
+  <polygon points="186,298 258,298 266,308 178,308" fill="#bcd6ef"/>
+  <rect x="190" y="248" width="68" height="50" rx="5" fill="#ffffff"/>
+  <rect x="196" y="254" width="56" height="38" rx="2" fill="#2f6fb0"/>
+  <rect x="202" y="262" width="32" height="4" rx="2" fill="#eaf2fb" opacity=".85"/>
+  <rect x="202" y="270" width="44" height="4" rx="2" fill="#eaf2fb" opacity=".6"/>
+  <rect x="202" y="278" width="24" height="4" rx="2" fill="#eaf2fb" opacity=".6"/>
+  <!-- badge "valide" -->
+  <circle cx="224" cy="220" r="15" fill="#f0c987"/>
+  <path d="M217 220l5 5 10-11" fill="none" stroke="#16324f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- personnage assis (stagiaire) -->
+  <rect x="128" y="280" width="34" height="8" rx="3" fill="#cfe0f0"/>
+  <rect x="132" y="288" width="4" height="24" fill="#cfe0f0"/>
+  <rect x="154" y="288" width="4" height="24" fill="#cfe0f0"/>
+  <rect x="126" y="216" width="42" height="66" rx="20" fill="#5b9bd9"/>
+  <rect x="150" y="238" width="34" height="14" rx="7" fill="#5b9bd9"/>
+  <circle cx="147" cy="200" r="17" fill="#e8c39e"/>
+  <!-- personnage debout (encadrant) -->
+  <rect x="268" y="176" width="44" height="112" rx="22" fill="#2f6fb0"/>
+  <rect x="252" y="224" width="30" height="13" rx="6.5" fill="#2f6fb0"/>
+  <rect x="276" y="288" width="10" height="46" rx="5" fill="#173a5c"/>
+  <rect x="296" y="288" width="10" height="46" rx="5" fill="#173a5c"/>
+  <circle cx="290" cy="160" r="18" fill="#e8c39e"/>
+</svg>

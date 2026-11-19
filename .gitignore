@@ -1,0 +1,18 @@
+# Secrets propres à chaque installation (identifiants d'envoi des mails)
+config/mail.local.php
+
+# Données produites par l'application (jamais versionnées)
+storage/mails/*
+!storage/mails/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
+storage/sauvegarde-*/
+public/uploads/*/*
+!public/uploads/*/.gitkeep
+!public/uploads/.htaccess
+
+# Fichiers d'éditeur et du système
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
